@@ -12,15 +12,7 @@ public class Field {
         for (int row = 0; row < field.length; row++) {
             for (int col = 0; col < field.length ; col++) {
                 if (field[row][col].equals(" O")) {
-                    if (ship.row1 == ship.row2) {
-                        if (Math.abs(ship.row1 - 1 - row) <= 1) {
-                            return false;
-                        }
-                    } else {
-                        if (Math.abs(ship.col1 - 1 - col) <= 1) {
-                            return false;
-                        }
-                    }
+
                 }
             }
         }
@@ -28,21 +20,17 @@ public class Field {
     }
 
     public void placeShip (Ship ship) {
-        // from 1 to 10
-        for (int row = 1; row <= field.length; row++) {
-            // from 1 to 10
-            for (int col = 1; col <= field.length; col++) {
-                // A = A
+        for (int row = 0; row < field.length; row++) {
+            for (int col = 0; col < field.length; col++) {
                 if (ship.row1 == ship.row2) {
                     // col1 <=  col <= col2
                     if (Math.min(ship.col1, ship.col2) <= col && col <= Math.max(ship.col1, ship.col2)) {
-                        // 1 => 0 = " 0"
-                        field[ship.row1 - 1][col - 1] = " O"; //
+                        field[ship.row1][col] = " O"; //
                     }
                 } else if (ship.col1 == ship.col2) {
                     // row1 <= row <= row2
                     if (Math.min(ship.row1, ship.row2) <= row && row <= Math.max(ship.row1, ship.row2)) {
-                        field[row - 1][ship.col1 - 1] = " O";
+                        field[row][ship.col1] = " O";
                     }
                 }
             }

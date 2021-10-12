@@ -9,11 +9,10 @@ public class Game {
 
     public void start() {
         field.printField();
-        System.out.println(placeShip(field, "A1 A3", 3));
+        field.placeShip(new Ship("A1 A5"));
         field.printField();
 
-        System.out.println(placeShip(field, "B8 B10", 3));
-        field.printField();
+
 
     }
 

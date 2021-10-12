@@ -30,7 +30,7 @@ public class Ship {
     }
 
     private int[][] convertInput(String input) {
-        // A1 D1 -> [1, 1][4, 1]
+        // A1 D1 -> [0, 0][3, 0]
         String[] stringArr = input.split(" ");
         int[] intArr1 = stringToInt(stringArr[0]);
         int[] intArr2 = stringToInt(stringArr[1]);
@@ -39,18 +39,11 @@ public class Ship {
     }
 
     private int[] stringToInt(String input) {
-        // A1 -> [1, 1]
+        // A1 -> [0, 0]
         char ch = input.charAt(0);
-        int row = charToInt(ch);
-        int col = Integer.parseInt(input.substring(1));
-        int[] result = new int[2];
-        result[0] = row;
-        result[1] = col;
+        int row = (int) ch - 65;
+        int col = Integer.parseInt(input.substring(1)) - 1;
+        int[] result = {row, col};
         return result;
-    }
-
-    private int charToInt(char ch) {
-        // A -> 1
-        return (int) ch - 64;
     }
 }
