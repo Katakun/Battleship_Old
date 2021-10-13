@@ -8,20 +8,22 @@ public class Field {
         fillField(field);
     }
 
+    public boolean isCollision(int[] point) {
+        for (int row = point[0] - 1; row <= point[0] + 1; row++) {
+            for (int col = point[1] - 1; col <= point[1] + 1 ; col++) {
+               if (field[row][col].equals(" O")) {
+                   return true;
+               }
+            }
+        }
+        return false;
+    }
+
     public boolean isShipPositionOk(Ship ship) {
+        boolean result;
         for (int row = ship.row1; row <= ship.row2; row++) {
             for (int col = ship.col1; col <= ship.col2; col++) {
-                if (field[row][col].equals(" O") ||
-                        field[row][col-1].equals(" O") ||
-                        field[row][col+1].equals(" O") ||
-
-                        field[row-1][col-1].equals(" O") ||
-                        field[row-1][col].equals(" O") ||
-                        field[row-1][col+1].equals(" O") ||
-
-                        field[row+1][col-1].equals(" O") ||
-                        field[row+1][col].equals(" O") ||
-                        field[row+1][col+1].equals(" O")) {
+                if (isCollision(new int[]{row, col})) {
                     return false;
                 }
             }

@@ -8,9 +8,9 @@ public class Game {
     }
 
     public void start() {
-        field.printField();
         field.placeShip(new Ship("A8 A10"));
         field.printField();
+        System.out.println(field.isShipPositionOk(new Ship("A5 A7")));
     }
 
     public String placeShip(Field field, String input, int shipSize) {
