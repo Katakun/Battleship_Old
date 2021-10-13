@@ -9,10 +9,21 @@ public class Field {
     }
 
     public boolean isShipPositionOk(Ship ship) {
-        for (int row = 0; row < field.length; row++) {
-            for (int col = 0; col < field.length ; col++) {
-                if (field[row][col].equals(" O")) {
+        for (int row = ship.row1; row <= ship.row2; row++) {
+            for (int col = ship.col1; col <= ship.col2; col++) {
+                if (field[row][col].equals(" O") ||
+                        field[row][col-1].equals(" O") ||
+                        field[row][col+1].equals(" O") ||
 
+                        field[row-1][col-1].equals(" O") ||
+                        field[row-1][col].equals(" O") ||
+                        field[row-1][col+1].equals(" O") ||
+
+                        field[row+1][col-1].equals(" O") ||
+                        field[row+1][col].equals(" O") ||
+                        field[row+1][col+1].equals(" O")) {
+                    System.out.println("blizko");
+                    return false;
                 }
             }
         }

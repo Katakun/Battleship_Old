@@ -11,6 +11,8 @@ public class Game {
         field.printField();
         field.placeShip(new Ship("A1 A5"));
         field.printField();
+        field.isShipPositionOk(new Ship("B6 B8"));
+        field.printField();
 
 
 
