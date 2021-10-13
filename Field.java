@@ -8,12 +8,19 @@ public class Field {
         fillField(field);
     }
 
+    boolean checkArray(String[][] arr, int row, int col) {
+        return row >=0 && row < arr.length &&
+                col >= 0 && col < arr[0].length;
+    }
+
     public boolean isCollision(int[] point) {
         for (int row = point[0] - 1; row <= point[0] + 1; row++) {
             for (int col = point[1] - 1; col <= point[1] + 1 ; col++) {
-               if (field[row][col].equals(" O")) {
-                   return true;
-               }
+               if (checkArray(field, row, col)) {
+                    if (field[row][col].equals(" O")) {
+                       return true;
+                   }
+                }
             }
         }
         return false;
