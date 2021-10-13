@@ -9,13 +9,8 @@ public class Game {
 
     public void start() {
         field.printField();
-        field.placeShip(new Ship("A1 A5"));
+        field.placeShip(new Ship("A8 A10"));
         field.printField();
-        field.isShipPositionOk(new Ship("B6 B8"));
-        field.printField();
-
-
-
     }
 
     public String placeShip(Field field, String input, int shipSize) {
@@ -34,8 +29,8 @@ public class Game {
             return "locationError";
         } else if (!isShipPositionOk) {
             return "positionError";
+        } else {
+            return "unknownError";
         }
-        return "unknownError";
     }
-
 }

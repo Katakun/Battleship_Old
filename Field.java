@@ -22,7 +22,6 @@ public class Field {
                         field[row+1][col-1].equals(" O") ||
                         field[row+1][col].equals(" O") ||
                         field[row+1][col+1].equals(" O")) {
-                    System.out.println("blizko");
                     return false;
                 }
             }
