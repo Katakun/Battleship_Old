@@ -1,19 +1,54 @@
 package battleship;
 
+import java.util.Scanner;
+
 public class Game {
     Field field;
+    Scanner scanner;
 
     public Game() {
         field = new Field();
+        scanner = new Scanner(System.in);
     }
-
     public void start() {
-        field.placeShip(new Ship("A8 A10"));
         field.printField();
-        System.out.println(field.isShipPositionOk(new Ship("A5 A7")));
+        askUserCoordinates("Aircraft Carrier");
+        askUserCoordinates("Battleship");
+        askUserCoordinates("Submarine");
+        askUserCoordinates("Cruiser");
+        askUserCoordinates("Destroyer");
     }
 
-    public String placeShip(Field field, String input, int shipSize) {
+    public void askUserCoordinates(String shipType) {
+        switch (shipType) {
+            case "Aircraft Carrier":
+                System.out.println("Enter the coordinates of the Aircraft Carrier (5 cells):");
+                placeHandler(5);
+            case "Battleship":
+                System.out.println("Enter the coordinates of the Battleship (4 cells):");
+                placeHandler(4);
+            case "Submarine":
+                System.out.println("Enter the coordinates of the Submarine (3 cells):");
+                placeHandler(3);
+            case "Cruiser":
+                System.out.println("Enter the coordinates of the Cruiser (3 cells):");
+                placeHandler(3);
+            case "Destroyer":
+                System.out.println("Enter the coordinates of the Destroyer (2 cells):");
+                placeHandler(2);
+            }
+    }
+
+    public void placeHandler(int shipSize) {
+        String input = scanner.nextLine();
+        while (true) {
+            if (placeShip(input, 5)) {
+                break;
+            }
+        }
+    }
+
+    public boolean placeShip(String input, int shipSize) {
         Ship ship = new Ship(input);
         // checkShipSize
         boolean isShipSizeOk = ship.size() == shipSize;
@@ -22,15 +57,16 @@ public class Game {
 
         if (isShipSizeOk && isShipLocationOk && isShipPositionOk) {
             field.placeShip(ship);
-            return "ok";
+            return true;
         } else if (!isShipSizeOk) {
-            return "sizeError";
+            System.out.println("Error! Wrong length of the Submarine! Try again:");
+            return false;
         } else if (!isShipLocationOk) {
-            return "locationError";
-        } else if (!isShipPositionOk) {
-            return "positionError";
-        } else {
-            return "unknownError";
+            System.out.println("Error! Wrong ship location! Try again:");
+            return false;
+        } else { // !isShipPositionOk
+            System.out.println("Error! You placed it too close to another one. Try again:");
+            return false;
         }
     }
 }
