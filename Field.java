@@ -44,7 +44,7 @@ public class Field {
                 if (ship.row1 == ship.row2) {
                     // col1 <=  col <= col2
                     if (Math.min(ship.col1, ship.col2) <= col && col <= Math.max(ship.col1, ship.col2)) {
-                        field[ship.row1][col] = " O"; //
+                        field[ship.row1][col] = " O";
                     }
                 } else if (ship.col1 == ship.col2) {
                     // row1 <= row <= row2

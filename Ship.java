@@ -19,7 +19,7 @@ public class Ship {
         return row1 == row2 || col1 == col2;
     }
 
-    public int size() {
+    public int getSize() {
         int size = 0;
         if (row1 == row2) {
             size =  Math.max(col1, col2) - Math.min(col1, col2) + 1;
