@@ -13,53 +13,26 @@ public class Game {
 
     public void start() {
         field.printField();
-        askUserCoordinates("Aircraft Carrier");
+
+        placeShip("Aircraft Carrier", 5);
         field.printField();
-        askUserCoordinates("Battleship");
+
+        placeShip("Battleship", 4);
         field.printField();
-        askUserCoordinates("Submarine");
+
+        placeShip("Submarine", 3);
         field.printField();
-        askUserCoordinates("Cruiser");
+
+        placeShip("Cruiser", 3);
         field.printField();
-        askUserCoordinates("Destroyer");
+
+        placeShip("Destroyer", 2);
         field.printField();
     }
 
-    public void askUserCoordinates(String shipType) {
-        switch (shipType) {
-            case "Aircraft Carrier":
-                System.out.println("Enter the coordinates of the Aircraft Carrier (5 cells):");
-                placeShip("Aircraft Carrier", 5);
-                break;
-            case "Battleship":
-                System.out.println("Enter the coordinates of the Battleship (4 cells):");
-                placeShip("Battleship", 4);
-                break;
-            case "Submarine":
-                System.out.println("Enter the coordinates of the Submarine (3 cells):");
-                placeShip("Submarine", 3);
-                break;
-            case "Cruiser":
-                System.out.println("Enter the coordinates of the Cruiser (3 cells):");
-                placeShip("Cruiser", 3);
-                break;
-            case "Destroyer":
-                System.out.println("Enter the coordinates of the Destroyer (2 cells):");
-                placeShip("Destroyer", 2);
-                break;
-            }
-    }
-
-//    public void placeHandler(int shipSize) {
-//        String input = scanner.nextLine();
-//        while (true) {
-//            if (placeShip(input, 5)) {
-//                break;
-//            }
-//        }
-//    }
 
     public void placeShip(String shipType, int shipSize) {
+        System.out.printf("Enter the coordinates of the %s (%d cells):\n", shipType, shipSize);
         String input = scanner.nextLine();
         Ship ship = new Ship(input);
 
