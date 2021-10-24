@@ -31,23 +31,29 @@ public class Game {
     }
 
 
+
     public void placeShip(String shipType, int shipSize) {
-        System.out.printf("Enter the coordinates of the %s (%d cells):\n", shipType, shipSize);
-        String input = scanner.nextLine();
-        Ship ship = new Ship(input);
+        System.out.printf("\nEnter the coordinates of the %s (%d cells):\n\n", shipType, shipSize);
 
-        boolean isShipSizeOk = ship.getSize() == shipSize;
-        boolean isShipLocationOk = ship.isLocationOk();
-        boolean isShipPositionOk = field.isShipPositionOk(ship);
+        while (true) {
+            String input = scanner.nextLine();
+            Ship ship = new Ship(input);
 
-        if (isShipSizeOk && isShipLocationOk && isShipPositionOk) {
-            field.placeShip(ship);
-        } else if (!isShipSizeOk) {
-            System.out.printf("Error! Wrong length of the %s! Try again:\n", shipType);
-        } else if (!isShipLocationOk) {
-            System.out.println("Error! Wrong ship location! Try again:");
-        } else { // !isShipPositionOk
-            System.out.println("Error! You placed it too close to another one. Try again:");
+            boolean isShipSizeOk = ship.getSize() == shipSize;
+            boolean isShipLocationOk = ship.isLocationOk();
+            boolean isShipPositionOk = field.isShipPositionOk(ship);
+
+            if (isShipSizeOk && isShipLocationOk && isShipPositionOk) {
+                field.placeShip(ship);
+                break;
+            } else if (!isShipSizeOk) {
+                System.out.printf("\nError! Wrong length of the %s! Try again:\n", shipType);
+            } else if (!isShipLocationOk) {
+                System.out.println("\nError! Wrong ship location! Try again:");
+            } else { // !isShipPositionOk
+                System.out.println("\nError! You placed it too close to another one. Try again:");
+            }
         }
+
     }
 }
