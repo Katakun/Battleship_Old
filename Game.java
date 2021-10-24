@@ -4,40 +4,56 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game {
-    Field field;
+    Field myField;
     Scanner scanner;
 
     public Game() {
-        field = new Field();
+        myField = new Field();
         scanner = new Scanner(System.in);
     }
 
     public void start() {
-        field.printField();
+        myField.printField();
 
-//        placeShip("Aircraft Carrier", 5);
-//        field.printField();
-//
-//        placeShip("Battleship", 4);
-//        field.printField();
-//
-//        placeShip("Submarine", 3);
-//        field.printField();
-//
-//        placeShip("Cruiser", 3);
-//        field.printField();
-//
-//        placeShip("Destroyer", 2);
-//        field.printField();
+        placeShip("Aircraft Carrier", 5);
+        myField.printField();
+
+        placeShip("Battleship", 4);
+        myField.printField();
+
+        placeShip("Submarine", 3);
+        myField.printField();
+
+        placeShip("Cruiser", 3);
+        myField.printField();
+
+        placeShip("Destroyer", 2);
+        myField.printField();
 
         System.out.println("\nThe game starts!\n");
-        field.printField();
+        myField.printField();
 
-        int[] shotPoint = shot();
-        System.out.println(Arrays.toString(shotPoint));
+        int[] shotPoint = shotPoint();
+        shotIndicate(shotPoint);
+
     }
 
-    public int[] shot() {
+
+    public void shotIndicate(int[] shotPoint) {
+        int row = shotPoint[0];
+        int col = shotPoint[1];
+        if (myField.field[row][col].equals(" O")) {
+            myField.field[row][col] = " X";
+            myField.printField();
+            System.out.println("You hit a ship!");
+        } else {
+            myField.field[row][col] = " M";
+            myField.printField();
+            System.out.println("You missed!");
+        }
+    }
+
+    public int[] shotPoint() {
         System.out.println("Take a shot!\n");
 
         while (true) {
@@ -61,10 +77,10 @@ public class Game {
 
             boolean isShipSizeOk = ship.getSize() == shipSize;
             boolean isShipLocationOk = ship.isLocationOk();
-            boolean isShipPositionOk = field.isShipPositionOk(ship);
+            boolean isShipPositionOk = myField.isShipPositionOk(ship);
 
             if (isShipSizeOk && isShipLocationOk && isShipPositionOk) {
-                field.placeShip(ship);
+                myField.placeShip(ship);
                 break;
             } else if (!isShipSizeOk) {
                 System.out.printf("\nError! Wrong length of the %s! Try again:\n", shipType);

@@ -1,7 +1,7 @@
 package battleship;
 
 public class Field {
-    private static String[][] field;
+    public String[][] field;
 
     public Field() {
         field = new String[10][10];
