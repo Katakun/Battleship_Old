@@ -28,8 +28,8 @@ public class Field {
 
     public boolean isShipPositionOk(Ship ship) {
         boolean result;
-        for (int row = ship.row1; row <= ship.row2; row++) {
-            for (int col = ship.col1; col <= ship.col2; col++) {
+        for (int row = Math.min(ship.row1, ship.row2); row <= Math.max(ship.row1, ship.row2); row++) {
+            for (int col = Math.min(ship.col1, ship.col2); col <= Math.max(ship.col1, ship.col2); col++) {
                 if (isCollision(new int[]{row, col})) {
                     return false;
                 }
