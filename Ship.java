@@ -38,7 +38,7 @@ public class Ship {
         return ship;
     }
 
-    private int[] stringToInt(String input) {
+    public static int[] stringToInt(String input) {
         // A1 -> [0, 0]
         char ch = input.charAt(0);
         int row = (int) ch - 65;

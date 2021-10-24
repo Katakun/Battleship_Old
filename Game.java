@@ -1,5 +1,6 @@
 package battleship;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game {
@@ -14,22 +15,41 @@ public class Game {
     public void start() {
         field.printField();
 
-        placeShip("Aircraft Carrier", 5);
+//        placeShip("Aircraft Carrier", 5);
+//        field.printField();
+//
+//        placeShip("Battleship", 4);
+//        field.printField();
+//
+//        placeShip("Submarine", 3);
+//        field.printField();
+//
+//        placeShip("Cruiser", 3);
+//        field.printField();
+//
+//        placeShip("Destroyer", 2);
+//        field.printField();
+
+        System.out.println("\nThe game starts!\n");
         field.printField();
 
-        placeShip("Battleship", 4);
-        field.printField();
-
-        placeShip("Submarine", 3);
-        field.printField();
-
-        placeShip("Cruiser", 3);
-        field.printField();
-
-        placeShip("Destroyer", 2);
-        field.printField();
+        int[] shotPoint = shot();
+        System.out.println(Arrays.toString(shotPoint));
     }
 
+    public int[] shot() {
+        System.out.println("Take a shot!\n");
+
+        while (true) {
+            String input = scanner.nextLine();
+            int[] shotPoint = Ship.stringToInt(input);
+            if (shotPoint[0] < 0 || shotPoint[0] > 9 || shotPoint[1] < 0 || shotPoint[1] > 9 ) {
+                System.out.println("\nError! You entered the wrong coordinates! Try again:\n");
+            } else {
+                return shotPoint;
+            }
+        }
+    }
 
 
     public void placeShip(String shipType, int shipSize) {
