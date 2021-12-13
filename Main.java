@@ -6,9 +6,5 @@ public class Main {
         // Write your code here
         Game game = new Game();
         game.start();
-
-
-
-
     }
 }
