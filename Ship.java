@@ -1,18 +1,41 @@
 package battleship;
 
 public class Ship {
+    String type;
     int[][] coordinates;
+    boolean atFloat;
     int row1;
     int col1;
     int row2;
     int col2;
 
-    public Ship(String input) {
-        coordinates = convertInput(input);
+    public Ship(String input, String type) {
+        this.type = type;
+        coordinates = convertInput(input); // A1 D1 -> [0, 0][3, 0]
+        atFloat = true;
         row1 = coordinates[0][0];
         col1 = coordinates[0][1];
         row2 = coordinates[1][0];
         col2 = coordinates[1][1];
+    }
+
+    // Проверка на потопление корабля
+    public boolean isShipAtFloat(Field field) {
+        if (row1 == row2) { // если они на одном ряду
+            for (int i = Math.min(col1, col2); i <= Math.max(col1, col2); i++) {
+                if (field.field[row1][i].equals(" O")) {
+                    return true;
+                }
+            }
+        } else if (col1 == col2) { // если он вертикальный
+            for (int i = Math.min(row1, row2); i <= Math.max(row1, row2); i++) {
+                if (field.field[i][col1].equals(" O")) {
+                    return true;
+                }
+            }
+        }
+        atFloat = false;
+        return false;
     }
 
     public boolean isLocationOk() {
