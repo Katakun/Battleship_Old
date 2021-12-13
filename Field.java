@@ -13,13 +13,24 @@ public class Field {
                 col >= 0 && col < arr[0].length;
     }
 
+    public boolean hasShipAfloat() {
+        for (int row = 0; row < field.length; row++) {
+            for (int col = 0; col < field[row].length; col++) {
+                if (field[row][col].equals(" O")) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public boolean isCollision(int[] point) {
         for (int row = point[0] - 1; row <= point[0] + 1; row++) {
             for (int col = point[1] - 1; col <= point[1] + 1 ; col++) {
-               if (checkArray(field, row, col)) {
+                if (checkArray(field, row, col)) {
                     if (field[row][col].equals(" O")) {
-                       return true;
-                   }
+                        return true;
+                    }
                 }
             }
         }
@@ -56,6 +67,19 @@ public class Field {
         }
     }
 
+
+
+    public void printFogField() {
+        System.out.println("\n  1 2 3 4 5 6 7 8 9 10");
+        for (int i = 0; i < field.length; i++) {
+            System.out.print((char) (65 + i));
+            for (int j = 0; j < field[i].length; j++) {
+                System.out.print(" ~");
+            }
+            System.out.println();
+        }
+    }
+
     private void fillField (String[][] field) {
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[i].length; j++) {
@@ -64,12 +88,31 @@ public class Field {
         }
     }
 
+
+
     public void printField() {
-        System.out.println("  1 2 3 4 5 6 7 8 9 10");
+        System.out.println("\n  1 2 3 4 5 6 7 8 9 10");
         for (int i = 0; i < field.length; i++) {
             System.out.print((char) (65 + i));
             for (int j = 0; j < field[i].length; j++) {
                 System.out.print(field[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    public void printFieldWithFogAndShotPoint() {
+        System.out.println("\n  1 2 3 4 5 6 7 8 9 10");
+        for (int i = 0; i < field.length; i++) {
+            System.out.print((char) (65 + i));
+            for (int j = 0; j < field[i].length; j++) {
+                if (field[i][j].equals(" O")) {
+                    System.out.print(" ~");
+                } else {
+                    System.out.print(field[i][j]);
+                }
+
+
             }
             System.out.println();
         }
